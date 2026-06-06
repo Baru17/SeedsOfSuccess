@@ -188,6 +188,7 @@
 
     /* Sessions table */
     table {
+
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
@@ -218,6 +219,86 @@
       background: linear-gradient(90deg, #0d6e4f, #14906a);
       border-radius: 3px;
     }
+    .topic-dropdown {
+      border: 1px solid #e8efec;
+      border-radius: 10px;
+      background: #fff;
+      padding: 8px 10px;
+    }
+    .topic-dropdown summary {
+      cursor: pointer;
+      color: #0d6e4f;
+      font-weight: 600;
+      list-style-position: inside;
+    }
+    .topic-checks {
+      margin-top: 8px;
+      color: #5a6b66;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    .topic-checks input { margin-right: 6px; accent-color: #0d6e4f; }
+    .student-link {
+      color: #0d6e4f;
+      font-weight: 600;
+      border-bottom: 1px dotted rgba(13,110,79,0.45);
+    }
+    .progress-card {
+      display: block;
+      color: inherit;
+      cursor: pointer;
+    }
+    .progress-card:hover strong { color: #0d6e4f; }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(16,42,35,0.48);
+      z-index: 200;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      width: min(560px, 100%);
+      max-height: 86vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e8efec;
+      box-shadow: 0 18px 45px rgba(16,42,35,0.22);
+      padding: 26px;
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .modal-head h3 {
+      font-family: 'Playfair Display', serif;
+      color: #0d6e4f;
+      font-size: 24px;
+    }
+    .modal-close {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #d8e2dd;
+      background: #fff;
+      color: #1f2d2a;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .detail-list {
+      margin: 8px 0 16px 18px;
+      color: #5a6b66;
+      font-size: 14px;
+    }
+    .detail-list li { margin-bottom: 6px; }
 
     /* Footer */
     .site-footer { background: #102a23; color: #c8d6d1; padding: 60px 0 24px; margin-top: 40px; }
@@ -412,12 +493,7 @@
               <option>Sundar V.</option>
             </select>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="date">Date</label>
-              <input type="date" id="date" required />
-            </div>
-            <div class="form-group">
+          <div class="form-group">
   <label for="time">Time</label>
 
   <input type="number" id="hour" min="1" max="12" placeholder="Hour" required>
@@ -429,7 +505,6 @@
     <option value="PM">PM</option>
   </select>
 </div>
-          </div>
           <div class="form-group">
             <label for="notes">Session Notes</label>
             <textarea id="notes" placeholder="What did you cover today?" required></textarea>
@@ -449,7 +524,7 @@
     <div class="container">
       <div class="card">
         <div class="section-title">
-          <h2>Sessions</h2>
+          <h2>Session</h2>
           <small>Last 5 sessions</small>
         </div>
         <table>
@@ -462,15 +537,20 @@
           </thead>
           <tbody>
             <tr data-progress-row>
-              <td>Rajaram</td>
               <td>
-                <div class="topic-checks" data-topics>
+                <a href="#" class="student-link" data-student="Rajaram" title="View details">Rajaram</a>
+              </td>
+              <td>
+                <details class="topic-dropdown" open>
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic /> Reading comprehension</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Short stories</label><br />
                                     <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -479,15 +559,18 @@
             </tr>
 
             <tr data-progress-row>
-              <td>Tamil Iniyan</td>
+              <td><a href="#" class="student-link" data-student="Tamil Iniyan" title="View details">Tamil Iniyan</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Phonics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Basic vocabulary</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Reading drill</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Writing practice</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Conversation</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -496,15 +579,18 @@
             </tr>
 
             <tr data-progress-row>
-              <td>Sri Pooja</td>
+              <td><a href="#" class="student-link" data-student="Sri Pooja" title="View details">Sri Pooja</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Sentence building</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Practice exercises</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -513,15 +599,18 @@
             </tr>
 
             <tr data-progress-row>
-              <td>Keerthi Sri</td>
+              <td><a href="#" class="student-link" data-student="Keerthi Sri" title="View details">Keerthi Sri</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Greetings</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Introductions</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Short dialogues</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Polite phrases</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Listening reinforcement</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -530,15 +619,18 @@
             </tr>
 
             <tr data-progress-row>
-              <td>Thangamuthu Pechi</td>
+              <td><a href="#" class="student-link" data-student="Thangamuthu Pechi" title="View details">Thangamuthu Pechi</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Listening</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Song lyrics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Comprehension</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Vocabulary from audio</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Summary practice</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -546,15 +638,18 @@
               </td>
             </tr>
             <tr data-progress-row>
-              <td>Sibiraj</td>
+              <td><a href="#" class="student-link" data-student="Sibiraj" title="View details">Sibiraj</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Listening</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Song lyrics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Comprehension</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Vocabulary from audio</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Summary practice</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -562,15 +657,18 @@
               </td>
             </tr>
             <tr data-progress-row>
-              <td>Lakshitha</td>
+              <td><a href="#" class="student-link" data-student="Lakshitha" title="View details">Lakshitha</a></td>
               <td>
-                <div class="topic-checks" data-topics>
+                <details class="topic-dropdown">
+                  <summary data-topic-summary>Assigned subjects/topics</summary>
+                  <div class="topic-checks" data-topics>
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Sentence building</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Practice exercises</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
                   <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
-                </div>
+                  </div>
+                </details>
               </td>
               <td>
                 <span class="progress-text" data-progress-text>0 / 5</span>
@@ -596,7 +694,7 @@
 
         <div style="padding:14px 0; border-bottom:1px solid #eef3f0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Tamil Iniyan</strong>
+            <a href="#" class="progress-card student-link" data-student="Tamil Iniyan"><strong style="font-size:15px;">Tamil Iniyan</strong></a>
             <span style="font-size:13px; color:#0d6e4f; font-weight:600;">80% · ▲ 12%</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:80%"></span></span>
@@ -605,7 +703,7 @@
 
         <div style="padding:14px 0; border-bottom:1px solid #eef3f0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Lakshitha</strong>
+            <a href="#" class="progress-card student-link" data-student="Lakshitha"><strong style="font-size:15px;">Lakshitha</strong></a>
             <span style="font-size:13px; color:#0d6e4f; font-weight:600;">92% · ▲ 8%</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:92%"></span></span>
@@ -614,7 +712,7 @@
 
         <div style="padding:14px 0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Sibiraj</strong>
+            <a href="#" class="progress-card student-link" data-student="Sibiraj"><strong style="font-size:15px;">Sibiraj</strong></a>
             <span style="font-size:13px; color:#a06b00; font-weight:600;">55% · needs focus</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:55%"></span></span>
@@ -677,6 +775,20 @@
     </div>
   </section>
 
+  <div class="modal-backdrop" id="studentDetailPopup" role="dialog" aria-modal="true" aria-labelledby="studentDetailTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="studentDetailTitle">Student Progress</h3>
+        <button class="modal-close" id="studentDetailPopupClose" type="button" aria-label="Close student details">&times;</button>
+      </div>
+      <p id="studentDetailOverall" style="color:#0d6e4f; font-weight:600; margin-bottom:14px;">0 / 0 Completed</p>
+      <h4 style="font-size:14px; color:#1f2d2a; margin-bottom:6px;">Completed Topics</h4>
+      <ul class="detail-list" id="studentDetailTopics"></ul>
+      <h4 style="font-size:14px; color:#1f2d2a; margin-bottom:6px;">Scores &amp; Marks</h4>
+      <ul class="detail-list" id="studentDetailScores"></ul>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -723,14 +835,16 @@
     // Sessions table: checkbox => progress (0..5)
     function updateProgressRow(row) {
       const boxes = row.querySelectorAll('input.topic-box[data-topic]');
-      const total = 5;
+      const total = boxes.length;
       const checkedCount = Array.from(boxes).filter(b => b.checked).length;
-      const pct = (checkedCount / total) * 100;
+      const pct = total ? (checkedCount / total) * 100 : 0;
 
       const textEl = row.querySelector('[data-progress-text]');
       const fillEl = row.querySelector('[data-progress-fill]');
-      if (textEl) textEl.textContent = `${checkedCount} / ${total}`;
+      const summaryEl = row.querySelector('[data-topic-summary]');
+      if (textEl) textEl.textContent = `${checkedCount}/${total} Completed`;
       if (fillEl) fillEl.style.width = `${pct}%`;
+      if (summaryEl) summaryEl.textContent = `${checkedCount}/${total} Completed`;
     }
 
     document.querySelectorAll('tr[data-progress-row]').forEach(row => {
@@ -738,6 +852,64 @@
       row.querySelectorAll('input.topic-box[data-topic]').forEach(cb => {
         cb.addEventListener('change', () => updateProgressRow(row));
       });
+    });
+
+    // Progress Tracking: clicking a student name opens a detailed popup
+    const popup = document.getElementById('studentDetailPopup');
+    const popupClose = document.getElementById('studentDetailPopupClose');
+    const popupTitle = document.getElementById('studentDetailTitle');
+    const popupTopics = document.getElementById('studentDetailTopics');
+    const popupScores = document.getElementById('studentDetailScores');
+    const popupOverall = document.getElementById('studentDetailOverall');
+
+    function closePopup() {
+      if (!popup) return;
+      popup.classList.remove('open');
+    }
+
+    document.querySelectorAll('.student-link').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const studentName = a.dataset.student;
+
+        const row = a.closest('tr[data-progress-row]') ||
+          Array.from(document.querySelectorAll('tr[data-progress-row]')).find(progressRow => {
+            const link = progressRow.querySelector('.student-link');
+            return link && link.dataset.student === studentName;
+          });
+        const boxes = row ? row.querySelectorAll('input.topic-box[data-topic]') : [];
+        const topics = Array.from(boxes).map(cb => {
+          const label = cb.parentElement.textContent.trim();
+          return { label, checked: cb.checked };
+        });
+        const completed = topics.filter(t => t.checked);
+        const total = topics.length;
+        const checkedCount = completed.length;
+
+        if (popupTitle) popupTitle.textContent = studentName;
+        if (popupTopics) {
+          popupTopics.innerHTML = completed.length
+            ? completed.map(t => `<li>${t.label}</li>`).join('')
+            : '<li><em>No completed topics yet.</em></li>';
+        }
+
+        // Demo-only scores/overall marks (until backend is wired)
+        const score = total ? Math.round((checkedCount / total) * 100) : 0;
+        const overall = `${checkedCount}/${total} Completed`;
+        if (popupOverall) popupOverall.textContent = overall;
+        if (popupScores) {
+          popupScores.innerHTML = completed.length
+            ? `<li>Completed Topics: <strong>${checkedCount}</strong></li><li>Topic Score: <strong>${score}%</strong></li><li>Overall Marks: <strong>${score} / 100</strong></li>`
+            : `<li><em>No scores available yet.</em></li>`;
+        }
+
+        popup.classList.add('open');
+      });
+    });
+
+    if (popupClose) popupClose.addEventListener('click', closePopup);
+    if (popup) popup.addEventListener('click', (e) => {
+      if (e.target === popup) closePopup();
     });
 
 

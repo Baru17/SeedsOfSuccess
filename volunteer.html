@@ -401,13 +401,22 @@
             <div class="vol-group">
               <label for="vrole">Role of Interest</label>
               <select id="vrole" required>
-                <option>Tutor</option>
-                <option>Mentor / Coordinator</option>
                 <option>Curriculum Developer</option>
-                <option>Technology Implementor</option>
-                <option>Behind-the-Scene Helper</option>
-                <option>Well-Wisher / Supporter</option>
+                <option>Technology Implementer</option>
+                <option>Teaching Helper</option>
+                <option>Well Wisher</option>
+                <option>Supporter</option>
               </select>
+            </div>
+          </div>
+          <div class="vol-row">
+            <div class="vol-group">
+              <label for="vpassword">Create Password</label>
+              <input type="password" id="vpassword" placeholder="Create a secure password" minlength="8" required />
+            </div>
+            <div class="vol-group">
+              <label for="vconfirm">Confirm Password</label>
+              <input type="password" id="vconfirm" placeholder="Confirm your password" minlength="8" required />
             </div>
           </div>
           <div class="vol-group">
@@ -540,8 +549,14 @@ async function submitVolunteer(event) {
     phone: document.getElementById("vphone").value,
     role: document.getElementById("vrole").value,
     skills: document.getElementById("vskills").value,
-    message: document.getElementById("vmsg").value
+    message: document.getElementById("vmsg").value,
+    password: document.getElementById("vpassword").value
   };
+
+  if (data.password !== document.getElementById("vconfirm").value) {
+    alert("Passwords do not match");
+    return;
+  }
 
   try {
 

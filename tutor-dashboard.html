@@ -315,7 +315,7 @@
       </div>
       <div class="stat-tile">
         <div class="num">28</div>
-        <div class="lbl">Total Sessions</div>
+        <div class="lbl">Completed Sessions</div>
       </div>
       <div class="stat-tile">
         <div class="num">4.6</div>
@@ -363,7 +363,7 @@
           <h2>My Students</h2>
           <small>Assigned by admin</small>
         </div>
-        <ul class="student-list">
+        <ul class="student-list" id="studentCards">
           <li>
             <div class="student-info">
               <div class="avatar">A</div>
@@ -418,15 +418,17 @@
               <input type="date" id="date" required />
             </div>
             <div class="form-group">
-              <label for="progress">Progress (1–5)</label>
-              <select id="progress" required>
-                <option>1 – Needs work</option>
-                <option>2 – Improving</option>
-                <option selected>3 – On track</option>
-                <option>4 – Strong</option>
-                <option>5 – Excellent</option>
-              </select>
-            </div>
+  <label for="time">Time</label>
+
+  <input type="number" id="hour" min="1" max="12" placeholder="Hour" required>
+
+  <input type="number" id="minute" min="0" max="59" placeholder="Minute" required>
+
+  <select id="ampm" required>
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </select>
+</div>
           </div>
           <div class="form-group">
             <label for="notes">Session Notes</label>
@@ -442,53 +444,138 @@
     </div>
   </section>
 
-  <!-- Past sessions -->
+  <!-- sessions -->
   <section class="section" style="padding-top:0;">
     <div class="container">
       <div class="card">
         <div class="section-title">
-          <h2>Recent Sessions</h2>
+          <h2>Sessions</h2>
           <small>Last 5 sessions</small>
         </div>
         <table>
           <thead>
             <tr>
-              <th>Date</th>
               <th>Student</th>
               <th>Topic</th>
               <th>Progress</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Apr 28, 2026</td>
-              <td>Arun K.</td>
-              <td>Reading comprehension – short stories</td>
-              <td>4 / 5 <span class="progress-bar"><span style="width:80%"></span></span></td>
+            <tr data-progress-row>
+              <td>Rajaram</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic /> Reading comprehension</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Short stories</label><br />
+                                    <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
             </tr>
-            <tr>
-              <td>Apr 25, 2026</td>
-              <td>Meena R.</td>
-              <td>Phonics & basic vocabulary</td>
-              <td>5 / 5 <span class="progress-bar"><span style="width:100%"></span></span></td>
+
+            <tr data-progress-row>
+              <td>Tamil Iniyan</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Phonics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Basic vocabulary</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Reading drill</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Writing practice</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Conversation</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
             </tr>
-            <tr>
-              <td>Apr 22, 2026</td>
-              <td>Arun K.</td>
-              <td>Sentence building practice</td>
-              <td>3 / 5 <span class="progress-bar"><span style="width:60%"></span></span></td>
+
+            <tr data-progress-row>
+              <td>Sri Pooja</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Sentence building</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Practice exercises</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
             </tr>
-            <tr>
-              <td>Apr 20, 2026</td>
-              <td>Sundar V.</td>
-              <td>Greetings & introductions</td>
-              <td>4 / 5 <span class="progress-bar"><span style="width:80%"></span></span></td>
+
+            <tr data-progress-row>
+              <td>Keerthi Sri</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Greetings</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Introductions</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Short dialogues</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Polite phrases</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Listening reinforcement</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
             </tr>
-            <tr>
-              <td>Apr 18, 2026</td>
-              <td>Meena R.</td>
-              <td>Listening exercise – song lyrics</td>
-              <td>5 / 5 <span class="progress-bar"><span style="width:100%"></span></span></td>
+
+            <tr data-progress-row>
+              <td>Thangamuthu Pechi</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Listening</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Song lyrics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Comprehension</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Vocabulary from audio</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Summary practice</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
+            </tr>
+            <tr data-progress-row>
+              <td>Sibiraj</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Listening</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Song lyrics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Comprehension</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Vocabulary from audio</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Summary practice</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
+            </tr>
+            <tr data-progress-row>
+              <td>Lakshitha</td>
+              <td>
+                <div class="topic-checks" data-topics>
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Sentence building</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Practice exercises</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic checked /> Corrections</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Grammar basics</label><br />
+                  <label><input type="checkbox" class="topic-box" data-topic /> Reading practice</label><br />
+                </div>
+              </td>
+              <td>
+                <span class="progress-text" data-progress-text>0 / 5</span>
+                <span class="progress-bar"><span class="progress-fill" data-progress-fill style="width:0%"></span></span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -509,7 +596,7 @@
 
         <div style="padding:14px 0; border-bottom:1px solid #eef3f0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Arun K.</strong>
+            <strong style="font-size:15px;">Tamil Iniyan</strong>
             <span style="font-size:13px; color:#0d6e4f; font-weight:600;">80% · ▲ 12%</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:80%"></span></span>
@@ -518,7 +605,7 @@
 
         <div style="padding:14px 0; border-bottom:1px solid #eef3f0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Meena R.</strong>
+            <strong style="font-size:15px;">Lakshitha</strong>
             <span style="font-size:13px; color:#0d6e4f; font-weight:600;">92% · ▲ 8%</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:92%"></span></span>
@@ -527,7 +614,7 @@
 
         <div style="padding:14px 0;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <strong style="font-size:15px;">Sundar V.</strong>
+            <strong style="font-size:15px;">Sibiraj</strong>
             <span style="font-size:13px; color:#a06b00; font-weight:600;">55% · needs focus</span>
           </div>
           <span class="progress-bar" style="width:100%; display:block; height:8px;"><span style="width:55%"></span></span>
@@ -632,6 +719,27 @@
       document.getElementById('logMsg').style.display = 'block';
       e.target.reset();
     }
+
+    // Sessions table: checkbox => progress (0..5)
+    function updateProgressRow(row) {
+      const boxes = row.querySelectorAll('input.topic-box[data-topic]');
+      const total = 5;
+      const checkedCount = Array.from(boxes).filter(b => b.checked).length;
+      const pct = (checkedCount / total) * 100;
+
+      const textEl = row.querySelector('[data-progress-text]');
+      const fillEl = row.querySelector('[data-progress-fill]');
+      if (textEl) textEl.textContent = `${checkedCount} / ${total}`;
+      if (fillEl) fillEl.style.width = `${pct}%`;
+    }
+
+    document.querySelectorAll('tr[data-progress-row]').forEach(row => {
+      updateProgressRow(row);
+      row.querySelectorAll('input.topic-box[data-topic]').forEach(cb => {
+        cb.addEventListener('change', () => updateProgressRow(row));
+      });
+    });
+
 
     document.querySelectorAll('a[href]').forEach(link => {
       const href = link.getAttribute('href');
